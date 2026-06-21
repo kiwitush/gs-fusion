@@ -12,8 +12,9 @@ outputs/
 *.ply
 *.obj
 
-# 外部依赖（threestudio 需单独 git clone）
+# 外部依赖（需单独 git clone）
 threestudio/
+Magic123/
 
 # IDE
 .vscode/

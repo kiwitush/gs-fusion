@@ -6,59 +6,17 @@
 （多视角重建、文本到 3D、单图到 3D）生成虚拟物体，最终将它们统一为高斯面片格式并
 融合到同一 3D 场景中进行多视角漫游渲染。
 
----
-
-## 目录
-
-- [3d-fusion](#3d-fusion)
-  - [目录](#目录)
-  - [项目结构](#项目结构)
-  - [环境配置](#环境配置)
-    - [1. 创建 Conda 环境](#1-创建-conda-环境)
-    - [2. 安装 2DGS 光栅化器（CUDA 后端）](#2-安装-2dgs-光栅化器cuda-后端)
-    - [3. 安装 simple-knn](#3-安装-simple-knn)
-    - [4. 安装 threestudio（可编辑安装）](#4-安装-threestudio可编辑安装)
-    - [5. 安装 Magic123](#5-安装-magic123)
-    - [6. 额外依赖](#6-额外依赖)
-  - [数据准备](#数据准备)
-    - [背景场景](#背景场景)
-    - [物体A —— 多视角照片](#物体a--多视角照片)
-    - [物体B —— 文本 Prompt](#物体b--文本-prompt)
-    - [物体C —— 单张照片](#物体c--单张照片)
-  - [各模块使用说明](#各模块使用说明)
-    - [1. 背景场景重建（2DGS）](#1-背景场景重建2dgs)
-    - [2. 物体A — 多视角重建（COLMAP + 2DGS）](#2-物体a--多视角重建colmap--2dgs)
-      - [第一步：运行 COLMAP SfM](#第一步运行-colmap-sfm)
-      - [第二步：训练 2DGS](#第二步训练-2dgs)
-      - [第三步：导出高斯 PLY](#第三步导出高斯-ply)
-    - [3. 物体B — 文本到3D（threestudio + SDS）](#3-物体b--文本到3dthreestudio--sds)
-    - [4. 物体C — 单图到3D（Magic123）](#4-物体c--单图到3dmagic123)
-      - [完整流程（推荐）](#完整流程推荐)
-      - [分步执行](#分步执行)
-    - [5. Mesh 转高斯面片](#5-mesh-转高斯面片)
-    - [6. 场景融合](#6-场景融合)
-      - [方法一：使用 JSON 配置文件（推荐）](#方法一使用-json-配置文件推荐)
-      - [方法二：命令行直接指定](#方法二命令行直接指定)
-    - [7. 漫游视频渲染](#7-漫游视频渲染)
-      - [内置轨迹类型](#内置轨迹类型)
-      - [使用自定义 JSON 轨迹](#使用自定义-json-轨迹)
-  - [模型评估](#模型评估)
-  - [全链路一键运行](#全链路一键运行)
-  - [指标与日志](#指标与日志)
-  - [引用](#引用)
-
----
 
 ## 项目结构
 
 ```
-3d_fusion/
+gs-fusion/
 ├── data/                              # 原始数据集 & 拍摄图像
 │   ├── mipnerf360/                    # Mip-NeRF 360 背景场景
 │   ├── object_a/images/               # 物体A 多视角照片
 │   ├── object_b/                      # 物体B 文本 Prompt（运行时指定）
 │   └── object_c/photo.jpg             # 物体C 单张照片
-├── outputs/                           # 预训练权重、生成资产、渲染视频
+├── outputs/                           
 │   ├── background/                    # 背景场景 2DGS 模型
 │   ├── object_a/                      # 物体A 2DGS 模型
 │   ├── object_b/                      # 物体B Mesh & 高斯 PLY
@@ -122,25 +80,7 @@ pip install .
 cd ..
 ```
 
-### 4. 安装 threestudio（可编辑安装）
-
-```bash
-git clone https://github.com/threestudio-project/threestudio
-cd threestudio
-pip install -e .
-cd ..
-```
-
-### 5. 安装 Magic123
-
-```bash
-git clone https://github.com/guochengqian/Magic123
-cd Magic123
-pip install -r requirements.txt
-cd ..
-```
-
-### 6. 额外依赖
+### 4. 额外依赖
 
 ```bash
 pip install rembg lpips imageio imageio-ffmpeg
