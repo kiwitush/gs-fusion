@@ -1,0 +1,76 @@
+name: 3d_fusion
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+
+dependencies:
+  # --- Core Python ---
+  - python=3.10
+
+  # --- PyTorch Ecosystem (CUDA 11.8) ---
+  - pytorch=2.1.0
+  - torchvision=0.16.0
+  - torchaudio=2.1.0
+  - pytorch-cuda=11.8
+
+  # --- 2D Gaussian Splatting ---
+  - cudatoolkit=11.8
+  - plyfile
+  - pip
+  - pip:
+      # 2DGS rasterizer (build from source, see README for compilation)
+      # - git+https://github.com/hbb1/diff-surfel-rasterization
+      # 3DGS simple-knn
+      # - git+https://github.com/graphdeco-inria/simple-knn
+
+  # --- COLMAP (via conda-forge) ---
+  - colmap=3.8
+
+  # --- 3D Vision & Geometry ---
+  - open3d
+  - trimesh
+  - pyrender
+  - opencv
+  - imageio
+  - imageio-ffmpeg
+  - scikit-image
+
+  # --- threestudio ecosystem ---
+  # Installed separately as an editable package (see README).
+  # Key transient deps included below.
+  - pip:
+      - diffusers
+      - transformers
+      - accelerate
+      - xformers
+      - einops
+      - omegaconf
+      - jaxtyping
+      - nerfacc
+
+  # --- Magic123 dependencies ---
+  - pip:
+      - nerfstudio
+      - gsplat
+
+  # --- Training & Logging ---
+  - wandb
+  - swanlab
+  - tensorboard
+
+  # --- Data Science & Visualization ---
+  - numpy
+  - scipy
+  - pandas
+  - matplotlib
+  - seaborn
+  - plotly
+
+  # --- Misc Utilities ---
+  - tqdm
+  - rich
+  - pyyaml
+  - h5py
+  - natsort

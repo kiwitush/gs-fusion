@@ -1,0 +1,23 @@
+{
+  "background": "outputs/background/garden/point_cloud_final.ply",
+  "objects": {
+    "object_a": {
+      "ply": "outputs/object_a/object_a.ply",
+      "scale": 0.04,
+      "rotation_deg": [0, 45, 0],
+      "translation": [2.0, -0.5, 0.5]
+    },
+    "object_b": {
+      "ply": "outputs/object_b/objectb.ply",
+      "scale": 0.04,
+      "rotation_deg": [0, 0, 0],
+      "translation": [0.0, -0.5, -1.5]
+    },
+    "object_c": {
+      "ply": "outputs/object_c/objectc.ply",
+      "scale": 0.04,
+      "rotation_deg": [0, 180, 0],
+      "translation": [-2.0, -0.5, 0.5]
+    }
+  }
+}

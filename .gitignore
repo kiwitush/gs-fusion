@@ -1,0 +1,49 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+build/
+
+# 训练产出（权重、点云、mesh）
+outputs/
+*.ckpt
+*.pth
+*.ply
+*.obj
+
+# 外部依赖（threestudio 需单独 git clone）
+threestudio/
+
+# IDE
+.vscode/
+.idea/
+.vs/
+
+# 系统
+.DS_Store
+Thumbs.db
+
+# Claude
+.claude/
+CLAUDE.md
+
+# LaTeX 编译中间文件与 PDF
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.lof
+*.lot
+*.blg
+*.bbl
+*.fdb_latexmk
+*.fls
+*.pdf
+report.tex
+
+# 临时文件 / 日志
+tmp*/
+trial*/
+curves/
